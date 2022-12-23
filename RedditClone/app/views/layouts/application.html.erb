@@ -13,6 +13,12 @@
     <%= yield %>
 
     <% if logged_in? %>
+      <form action="<%= user_url(@user.id) %>" method="POST">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type="hidden" name="_method" value="DELETE">
+
+        <input type="submit" value="Delete User">
+      </form>
 
       <form action="<%= session_url %>" method="POST">
       <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
@@ -27,8 +33,8 @@
         <input type="submit" value="Login">
       </form>
 
-      <form action="<%= new_user_url %> method="GET">
-        <input type="submit" value="Sign up"
+      <form action="<%= new_user_url %>" method="GET">
+        <input type="submit" value="Sign up">
       </form>
     <% end %>
   </body>
