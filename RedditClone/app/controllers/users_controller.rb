@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    before_action :require_logged_in?, only: [:show, :destroy, :index]
+    before_action :require_logged_in?, only: [:show, :destroy, :index, :update, :edit]
     before_action :require_logged_out, only: [:new, :create]
 
     def new
@@ -37,6 +37,17 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find_by(id: params[:id])
+    end
+
+    def update
+        @user = current_user
+        @user.username = user_params[:username]
+        @user.save!
+        redirect_to user_url(@user)
+    end
+
+    def edit
+        @user = current_user
     end
 
     private
