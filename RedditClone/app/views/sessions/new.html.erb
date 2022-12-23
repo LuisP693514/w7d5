@@ -1,9 +1,23 @@
 
-<form action=" <%= new_session_url %>" method="POST">
+<form action=" <%= session_url %>" method="POST">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"
+
     <label for="user[username]">Username: 
         <input type="text" name="user[username]" value="">
     </label>
     <label for="user[password]">Password: 
         <input type="password" name="user[password]" value="">
     </label>
+
+    <input type="submit" value="Login">
 </form>
+
+<% if flash[:errors] %>
+
+    <% flash[:errors].each do |error| %>
+
+        <p> <%= error %> </p>
+
+    <% end %>
+
+<% end %>

@@ -20,6 +20,8 @@ class SessionsController < ApplicationController
     end
 
     def destroy
+        logout! if logged_in?
+        redirect_to new_session_url
     end
 
     def new

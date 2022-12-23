@@ -4,6 +4,8 @@ class UsersController < ApplicationController
     before_action :require_logged_out, only: [:new, :create]
 
     def new
+        @user = User.new
+        redirect_to new_session_url
     end
 
     def destroy
@@ -16,5 +18,6 @@ class UsersController < ApplicationController
     end
 
     def show
+        @user = User.find_by(id: params[:id])
     end
 end
